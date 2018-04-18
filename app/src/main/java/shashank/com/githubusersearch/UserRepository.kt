@@ -21,7 +21,7 @@ class UserRepository {
         .getUsers(query, sort, order)
   }
 
-  fun getUserConverter(): Converter.Factory {
+  private fun getUserConverter(): Converter.Factory {
     val gsonBuilder = GsonBuilder()
     val listType = object : TypeToken<List<User>>(){}.type
     gsonBuilder.registerTypeAdapter(listType, UserObjectConverter())

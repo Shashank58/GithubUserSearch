@@ -6,6 +6,6 @@ import rx.Observable
 
 interface ApiRoutes {
 
-    @GET("search/users")
-    fun getUsers(@Query("q") query: String, @Query("sort") sort: String, @Query("order") order: String): Observable<List<User>>
+  @GET("search/users")
+  fun getUsers(@Query("q") query: String, @Query("sort") sort: String, @Query("order") order: String): Observable<List<User>>
 }

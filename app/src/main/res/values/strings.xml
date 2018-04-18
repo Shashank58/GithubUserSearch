@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">GithubUserSearch</string>
     <string name="search_for_user">Search for user</string>
+    <string name="something_wrong">Oops, something went wrong</string>
 </resources>
