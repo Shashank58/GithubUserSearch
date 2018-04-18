@@ -3,6 +3,7 @@ package shashank.com.githubusersearch
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_search.*
 import rx.Subscriber
 import rx.android.schedulers.AndroidSchedulers
@@ -25,7 +26,7 @@ class SearchActivity : AppCompatActivity(), SearchContract.View {
         .distinctUntilChanged()
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(object: Subscriber<String>() {
+        .subscribe(object : Subscriber<String>() {
           override fun onNext(query: String?) {
             if (query == null || query == "") return
             presenter.getUsers(query)
@@ -41,7 +42,8 @@ class SearchActivity : AppCompatActivity(), SearchContract.View {
   }
 
   override fun displayUsers(users: List<User>) {
-
+    val searchAdapter = SearchAdapter(users, this)
+    users_list.adapter = searchAdapter
   }
 
   override fun showNoUsersFound() {
@@ -49,7 +51,6 @@ class SearchActivity : AppCompatActivity(), SearchContract.View {
   }
 
   override fun showToast(message: Int) {
-
+    Toast.makeText(this, message, Toast.LENGTH_LONG).show()
   }
-
 }
