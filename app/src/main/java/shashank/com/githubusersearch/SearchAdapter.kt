@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.user_card.view.*
 
-class SearchAdapter(private val users: List<User>, private val activity: Activity) : RecyclerView.Adapter<SearchAdapter.ViewHolder>() {
+class SearchAdapter(private var users: List<User>, private val activity: Activity) : RecyclerView.Adapter<SearchAdapter.ViewHolder>() {
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
     return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.user_card, parent, false))
@@ -18,6 +18,11 @@ class SearchAdapter(private val users: List<User>, private val activity: Activit
 
   override fun onBindViewHolder(holder: ViewHolder, position: Int) {
     holder.bind(holder.itemView, users[position])
+  }
+
+  fun updateUserList(users: List<User>) {
+    this.users = users
+    notifyDataSetChanged()
   }
 
   inner class ViewHolder(item: View?) : RecyclerView.ViewHolder(item) {
